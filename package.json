@@ -1,0 +1,19 @@
+{
+  "name": "palm-js",
+  "version": "0.0.1-alpha",
+  "description": "Pretty Awesome Lightweight Map",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
+  "keywords": [
+    "Lightweight Map",
+    "Map library"
+  ],
+  "author": "Jared Hood",
+  "license": "MIT",
+  "homepage": "https://github.com/Jaerd-Hood/palm-js#readme",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
