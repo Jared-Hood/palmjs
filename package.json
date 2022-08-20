@@ -2,18 +2,29 @@
   "name": "palm-js",
   "version": "0.0.1-alpha",
   "description": "Pretty Awesome Lightweight Map",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "prepublishOnly": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npx tsc"
   },
   "keywords": [
     "Lightweight Map",
     "Map library"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "author": "Jared Hood",
   "license": "MIT",
-  "homepage": "https://github.com/Jaerd-Hood/palm-js#readme",
+  "homepage": "https://github.com/Jared-Hood/palm-js#readme",
   "dependencies": {
     "typescript": "^4.7.4"
+  },
+  "engines": {
+    "node": ">=17"
   }
 }
