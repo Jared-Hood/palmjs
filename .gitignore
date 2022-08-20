@@ -1,2 +1,3 @@
 local-test/
 dist/
+node_modules/
