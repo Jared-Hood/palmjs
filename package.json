@@ -1,6 +1,6 @@
 {
-  "name": "palm-js",
-  "version": "0.0.2-alpha",
+  "name": "palmjs",
+  "version": "0.0.1-alpha",
   "description": "Pretty Awesome Lightweight Map",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
