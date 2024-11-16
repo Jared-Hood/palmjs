@@ -1,6 +1,6 @@
 {
   "name": "palmjs",
-  "version": "0.0.2-alpha",
+  "version": "0.0.2",
   "description": "A lightweight javascript map package",
   "keywords": [
     "Lightweight Map",
