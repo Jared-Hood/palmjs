@@ -1,3 +1,3 @@
-# Palm: Pretty Awesome Lightweight Map
+# Palmjs: Pretty Awesome Lightweight Map
 
-Palm is a barebones mapping library that will quickly load tiles and markers.
+Palmjs is a barebones mapping library that allows you to render web maps on your site.
