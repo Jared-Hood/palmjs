@@ -1,0 +1,5 @@
+---
+'palmjs': patch
+---
+
+Initial release
