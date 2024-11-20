@@ -24,8 +24,8 @@
     /* AND if you're building for a library: */
     "declaration": true,
 
-    /* AND if you're building for a library in a monorepo: */
-    "declarationMap": true
+    /* If your code runs in the DOM: */
+    "lib": ["es2022", "dom", "dom.iterable"],
   },
   "include": ["src/**/*"],
   "exclude": ["test-site"]

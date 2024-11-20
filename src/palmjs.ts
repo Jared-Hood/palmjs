@@ -2,6 +2,7 @@ interface MapOptions {
   latitude: number;
   longitude: number;
   zoom: number;
+  tileLayerUrl?: string;
 }
 
 export class Palmjs {
@@ -9,14 +10,21 @@ export class Palmjs {
   private longitude: number;
   private zoom: number;
   private elementId: string;
+  private tileLayerUrl: string;
   private mapElement: HTMLDivElement | null = null;
   private tileSize = 256;
 
-  constructor(elementId: string, { latitude, longitude, zoom }: MapOptions) {
+  constructor(elementId: string, {
+    latitude,
+    longitude,
+    zoom,
+    tileLayerUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  }: MapOptions) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.zoom = zoom;
     this.elementId = elementId;
+    this.tileLayerUrl = tileLayerUrl;
 
     this.validateInputs();
   }
@@ -58,7 +66,6 @@ export class Palmjs {
   private load(): void {
     if (!this.mapElement) return;
 
-    const tileSize = 256;
     const centerTile = this.latLngToTile(
       this.latitude,
       this.longitude,
@@ -71,8 +78,8 @@ export class Palmjs {
     // Calculate visible tiles based on the container size
     const containerWidth = this.mapElement.clientWidth;
     const containerHeight = this.mapElement.clientHeight;
-    const tilesHorizontally = Math.ceil(containerWidth / tileSize) + 1;
-    const tilesVertically = Math.ceil(containerHeight / tileSize) + 1;
+    const tilesHorizontally = Math.ceil(containerWidth / this.tileSize) + 1;
+    const tilesVertically = Math.ceil(containerHeight / this.tileSize) + 1;
 
     for (
       let xOffset = -Math.floor(tilesHorizontally / 2);
@@ -90,8 +97,8 @@ export class Palmjs {
           tileX,
           tileY,
           this.zoom,
-          xOffset * tileSize,
-          yOffset * tileSize,
+          xOffset * this.tileSize,
+          yOffset * this.tileSize,
         );
       }
     }
@@ -104,7 +111,10 @@ export class Palmjs {
     offsetX: number,
     offsetY: number,
   ): void {
-    const tileUrl = `https://tile.openstreetmap.org/${zoom}/${tileX}/${tileY}.png`;
+    const tileUrl = this.tileLayerUrl
+      .replace("{z}", zoom.toString())
+      .replace("{x}", tileX.toString())
+      .replace("{y}", tileY.toString());
 
     const img = document.createElement('img');
     img.src = tileUrl;
@@ -117,6 +127,7 @@ export class Palmjs {
     this.mapElement!.appendChild(img);
   }
 
+  // Convert lat, long coordinates into web mercator coordinates.
   private latLngToTile(lat: number, lng: number, zoom: number) {
     const x = Math.floor(((lng + 180) / 360) * Math.pow(2, zoom));
     const y = Math.floor(
