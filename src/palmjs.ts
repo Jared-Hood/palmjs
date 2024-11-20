@@ -14,12 +14,15 @@ export class Palmjs {
   private mapElement: HTMLDivElement | null = null;
   private tileSize = 256;
 
-  constructor(elementId: string, {
-    latitude,
-    longitude,
-    zoom,
-    tileLayerUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-  }: MapOptions) {
+  constructor(
+    elementId: string,
+    {
+      latitude,
+      longitude,
+      zoom,
+      tileLayerUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    }: MapOptions,
+  ) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.zoom = zoom;
@@ -112,9 +115,9 @@ export class Palmjs {
     offsetY: number,
   ): void {
     const tileUrl = this.tileLayerUrl
-      .replace("{z}", zoom.toString())
-      .replace("{x}", tileX.toString())
-      .replace("{y}", tileY.toString());
+      .replace('{z}', zoom.toString())
+      .replace('{x}', tileX.toString())
+      .replace('{y}', tileY.toString());
 
     const img = document.createElement('img');
     img.src = tileUrl;
